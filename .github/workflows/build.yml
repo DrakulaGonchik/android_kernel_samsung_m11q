@@ -4,5 +4,10 @@ on:
       - main
   workflow_dispatch:
 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
 - name: Android Kernel Action   
   uses: lemniskett/android-kernel-actions@v1.0.1
