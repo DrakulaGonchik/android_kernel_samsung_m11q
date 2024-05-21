@@ -1,7 +1,6 @@
 name: Build Android Kernel
 
 on: [push, pull_request]
-
   push:
     branches:
       - android-12
