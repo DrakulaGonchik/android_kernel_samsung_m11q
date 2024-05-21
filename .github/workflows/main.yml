@@ -1,0 +1,29 @@
+name: Build Android Kernel
+
+on: 
+  push:
+    branches:
+      - android-12
+  workflow_dispatch:
+    tags: '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libncurses-dev bison flex libssl-dev bc u-boot-tools cpio lzop libelf-dev libtinfo5 gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf
+          # Ensure libtinfo.so.5 is available by creating a symbolic link if necessary
+          if [ ! -f /usr/lib/x86_64-linux-gnu/libtinfo.so.5 ]; then
+            sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5
+          fi
+
+      - name: Build Android Kernel
+        run: |
+          bash build_kernel.sh
