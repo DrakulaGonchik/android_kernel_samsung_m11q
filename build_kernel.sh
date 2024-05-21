@@ -1,5 +1,6 @@
 #!/bin/bash
 
+make clean && make mrproper
 export ARCH=arm64
 mkdir out
 
