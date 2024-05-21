@@ -1,13 +1,11 @@
 name: Build Android Kernel
 
-on: [push, pull_request]
+on: 
   push:
     branches:
       - android-12
   workflow_dispatch:
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    tags: '*'
 
     steps:
     - name: Checkout repository
