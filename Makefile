@@ -3,6 +3,8 @@ PATCHLEVEL = 9
 SUBLEVEL = 227
 EXTRAVERSION =
 NAME = Roaring Lionus
+CROSS_COMPILE=$(pwd)/toolchains/aarch64-linux-android-4.9-master/bin/aarch64-linux-android-
+REAL_CC=$(pwd)/toolchains/llvm-arm-toolchain-ship-10.0-master/bin/clang
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
