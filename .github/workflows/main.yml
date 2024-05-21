@@ -26,5 +26,4 @@ jobs:
 
       - name: Build Android Kernel
         run: |
-          bash build_kernel
-          pwd
+          bash build_kernel.sh
