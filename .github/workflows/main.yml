@@ -7,23 +7,27 @@ on:
   workflow_dispatch:
     tags: '*'
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libtinfo5
-        # Ensure libtinfo.so.5 is available by creating a symbolic link if necessary
-        if [ ! -f /usr/lib/x86_64-linux-gnu/libtinfo.so.5 ]; then
-          sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5
-        fi
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libtinfo5
+          # Ensure libtinfo.so.5 is available by creating a symbolic link if necessary
+          if [ ! -f /usr/lib/x86_64-linux-gnu/libtinfo.so.5 ]; then
+            sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5
+          fi
 
-    - name: Build Android Kernel
-      run: |
-        export PATH=/github/workspace/toolchains/llvm-arm-toolchain-ship-10.0-master/bin:$PATH
-        /github/workspace/toolchains/llvm-arm-toolchain-ship-10.0-master/bin/clang --version
-        # Add your build commands here
-        make -C path/to/kernel/source ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
-        make -C path/to/kernel/source ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
+      - name: Build Android Kernel
+        run: |
+          export PATH=/github/workspace/toolchains/llvm-arm-toolchain-ship-10.0-master/bin:$PATH
+          /github/workspace/toolchains/llvm-arm-toolchain-ship-10.0-master/bin/clang --version
+          # Add your build commands here
+          make -C path/to/kernel/source ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+          make -C path/to/kernel/source ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
