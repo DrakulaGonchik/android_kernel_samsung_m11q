@@ -23,6 +23,7 @@ jobs:
           if [ ! -f /usr/lib/x86_64-linux-gnu/libtinfo.so.5 ]; then
             sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5
           fi
+          cd android_kernel_samsung_m11q
 
       - name: Build Android Kernel
         run: |
