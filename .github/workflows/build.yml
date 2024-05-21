@@ -27,7 +27,7 @@ jobs:
         NAME: Dark-Ages-Último
       with:
         arch: arm64
-        compiler: gcc/12
+        compiler: gcc/4.9
         defconfig: m11q_eur_open_defconfig
         image: Image.gz-dtb
 
